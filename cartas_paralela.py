@@ -1,6 +1,6 @@
 import random
 import time
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor # concurrent.futures para ordenar en paralelo
 
 # Definición de los valores y palos
 valores = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
@@ -10,15 +10,14 @@ palos = ['corazones', 'tréboles', 'picas', 'diamantes', 'comodín']
 def generar_carta():
     valor = random.choice(valores)# valor aleatorio
     palo = random.choice(palos)# palo aleatorio
-    return (valor, palo)
+    return (valor, palo) #retornar una tupla 
 
 # Función que asigna un orden numérico a los valores y palos
 def clave_ordenacion(carta):
     valor, palo = carta
-    # Mapeo de los valores
-    valor_orden = valores.index(valor)
+    valor_orden = valores.index(valor) # Convierte el valor en índice (0-12)
     # Mapeo de los palos (corazones < tréboles < picas < diamantes < comodín)
-    palo_orden = palos.index(palo)
+    palo_orden = palos.index(palo)# Convierte el palo en índice (0-4)
     return (palo_orden, valor_orden)#Por ejemplo, una carta de 'J' de 'corazones' sería convertida a (0, 9).
 
 # Función que divide las cartas en partes y ordena en paralelo
